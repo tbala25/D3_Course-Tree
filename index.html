@@ -12,7 +12,7 @@
     }
 
 	.node circle {
-	  fill: a30303;
+	  fill: fff;
 	  stroke: #a30303;
 	  stroke-width: 2px;
 	}
@@ -221,7 +221,7 @@ var nodeUpdate = node.transition()
 nodeUpdate.select("circle")
 .attr("r", 20)
 .attr("stroke", function(d) { return d._children ? "#fff" : "#000"; })
-.style("fill", function(d) { return d._children ? "#fff" : "#a30303"; });
+.style("fill", function(d) { return d._children ? "#a30303" : "#fff"; });
 
 
 // Transition exiting nodes to the parent's new position.
