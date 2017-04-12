@@ -14,7 +14,7 @@
 	.node circle {
 	  fill: a30303;
 	  stroke: #a30303;
-	  stroke-width: 5px;
+	  stroke-width: 2px;
 	}
 
 	.node text { font: 10px sans-serif; }
@@ -124,6 +124,7 @@ tree1.treeData = [];
 data.forEach(function(node) {
 	// add to parent
 	var parent = tree1.dataMap[node.College];
+    //var fac = tree1.dataMap[node.Latest_Faculty];
 	if (parent) {
 		// create child array if it doesn't exist
 		(parent.children || (parent.children = []))
@@ -175,11 +176,6 @@ data.forEach(function(node) {
 
 });
 
-//
-// tree1.svg = d3.select("#tree1");
-// .append("svg")
-// .attr("width",tree1.width)
-// .attr("height",tree1.height);
 
 function update(source) {
 
@@ -207,13 +203,14 @@ function update(source) {
 
   nodeEnter.append("text")
   .attr("x", function(d) {
-        return d.children || d._children ? -50 : 50; })
+        return d.children || d._children ? 0 : 0; })
 .attr("y", function(d) {
         return d.children || d._children ? 0 : 0; })
 
 	  .attr("dy", ".35em")
-	  .attr("text-anchor", function(d) {
-		  return d.children || d._children ? "end" : "start"; })
+	  //.attr("text-anchor", function(d) {
+		//  return d.children || d._children ? "end" : "start"; })
+    .attr("text-anchor", "middle")
 	  .text(function(d) { return d.Course; })
 	  .style("fill-opacity", 1);
 
@@ -296,6 +293,35 @@ function deets(d) {
  //  		  return d.children || d._children ? "end" : "start"; })
   	  .text(d.Course)
   	  .style("font-size", 24);
+
+//if fac isnt empty show
+details.svg.append("text")
+  .attr("dy", "5em")
+  .attr("dx", "0em")
+//  	  .attr("text-anchor", function(d) {
+//  		  return d.children || d._children ? "end" : "start"; })
+  .text("Latest Faculty: " + d.Latest_Faculty)
+  .style("font-size", 18);
+
+
+//if offered isnt empty show
+details.svg.append("text")
+  .attr("dy", "7em")
+  .attr("dx", "0em")
+//  	  .attr("text-anchor", function(d) {
+//  		  return d.children || d._children ? "end" : "start"; })
+  .text("Last Offered: " + d.Last_Offered)
+  .style("font-size", 18);
+
+
+//if stud isnt empty show
+details.svg.append("text")
+  .attr("dy", "9em")
+  .attr("dx", "0em")
+//  	  .attr("text-anchor", function(d) {
+//  		  return d.children || d._children ? "end" : "start"; })
+  .text("Average Student Count: " + d.Average_Student_Count)
+  .style("font-size", 18);
 }
 
 </script>
