@@ -99,7 +99,7 @@ details.svg = d3.select("#details").append("svg")
                  + " scale(" + d3.event.scale + ")");
     }
 //necessary so that zoom knows where to zoom and unzoom from
-zm.translate([350, 20]);
+zm.translate([350, 0]);
 // load the external data
 d3.csv("data1.csv", function(error, data) {
 // *********** Convert flat data into a nice tree ***************
@@ -137,7 +137,7 @@ data.forEach(function(node) {
   tree1.cssh = tree1.root.children[6];
   tree1.dmsb = tree1.root.children[7];
   tree1.hon = tree1.root.children[8];
-  tree1.ug = tree1.root.children[9];
+  tree1.nuex = tree1.root.children[9];
   //add programs to data1
   //create those nodes here
   //click each program, then each college, then neu
@@ -150,7 +150,7 @@ data.forEach(function(node) {
   click(tree1.cssh);
   click(tree1.dmsb);
   click(tree1.hon);
-  click(tree1.ug);
+  click(tree1.nuex);
   //d3.select("#details").remove();
   //click(root);
   console.log(tree1.root);
