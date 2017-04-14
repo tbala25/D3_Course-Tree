@@ -127,7 +127,7 @@ d3.csv("data1.csv", function(error, data) {
 // *********** Convert flat data into a nice tree ***************
 // create a name: node map
 tree1.dataMap = data.reduce(function(map, node) {
-	map[node.Course] = node;
+	map[node.Course_Short] = node;
 	return map;
 }, {});
 
