@@ -187,7 +187,7 @@ var nodeUpdate = node.transition()
 .duration(tree1.duration)
 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 nodeUpdate.select("circle")
-.attr("r", 25)
+.attr("r", 30)
 .attr("stroke", function(d) { return d._children ? "#fff" : "#000"; })
 .style("fill", function(d) { return d._children ? "#a30303" : "#fff"; });
 // Transition exiting nodes to the parent's new position.
