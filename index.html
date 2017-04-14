@@ -181,7 +181,7 @@ function update(source) {
 	  //.attr("text-anchor", function(d) {
 		//  return d.children || d._children ? "end" : "start"; })
     .attr("text-anchor", "middle")
-	  .text(function(d) { return d.Course_Short; })
+	  .text(function(d) { return d.Course; })
 	  .style("fill-opacity", 1);
 var nodeUpdate = node.transition()
 .duration(tree1.duration)
@@ -247,7 +247,7 @@ function deets(d) {
       .attr("dx", "0em")
  //  	  .attr("text-anchor", function(d) {
  //  		  return d.children || d._children ? "end" : "start"; })
-  	  .text(d.Course)
+  	  .text(d.Course_Long)
   	  .style("font-size", 24);
 //if fac isnt empty show
 details.svg.append("text")
