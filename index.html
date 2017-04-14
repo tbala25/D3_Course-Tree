@@ -256,7 +256,7 @@ details.svg.append("text")
 //  	  .attr("text-anchor", function(d) {
 //  		  return d.children || d._children ? "end" : "start"; })
 
-if (d.LatestFaculty != null) {
+if (d.LatestFaculty !== "null") {
   .text("Latest Faculty: " + d.Latest_Faculty) }
   .style("font-size", 18);
 //if offered isnt empty show
