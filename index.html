@@ -11,45 +11,38 @@
     .node {
         cursor: pointer;
     }
-
 	.node circle {
 	  fill: fff;
 	  stroke: #a30303;
 	  stroke-width: 2px;
 	}
-
 	.node text { 
 	  font: 10px sans-serif;
 	  font-family: 'Source Sans Pro', sans-serif;
 	  font-weight: 600;
 	  color: #949494;
 	}
-
 	.link {
 	  fill: none;
 	  stroke: #ffde8d;
 	  stroke-width: 2px;
 	}
-
     body {
         overflow: hidden;
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 600;
         color: #949494;
     }
-
     #wrapper {
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: row;
     }
-
     #tree1 {
         width: 60%;
         height: 100%;
     }
-
     #details {
         width: 40%;
         height: 100%;
@@ -57,8 +50,6 @@
          font-weight: 200;
          color: #949494;
     }
-
-
     </style>
 
   </head>
@@ -76,39 +67,30 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>
 
 <script>
-
 // ************** Generate the tree diagram	 *****************
 var tree1= {};
 var details = {};
-
 details.margin = {top: 20, right: 120, bottom: 20, left: 920};
 details.width = 1000 - details.margin.right - details.margin.left;
 details.height = 800 - details.margin.top - details.margin.bottom;
-
 tree1.margin = {top: 20, right: 500, bottom: 20, left: 120};
     tree1.width = 1000 - tree1.margin.right - tree1.margin.left;
     tree1.height = 800 - tree1.margin.top - tree1.margin.bottom;
 tree1.i = 0;
 tree1.duration = 500;
-
-
 tree1.tree = d3.layout.tree().nodeSize([50, 50]);
-
 tree1.diagonal = d3.svg.diagonal()
 .projection(function(d) { return [d.y, d.x]; });
-
 tree1.svg = d3.select("#tree1").append("svg")
 	.attr("width", tree1.width + tree1.margin.right + tree1.margin.left)
 	.attr("height", tree1.height + tree1.margin.top + tree1.margin.bottom)
     .call(zm = d3.behavior.zoom().scaleExtent([1,3]).on("zoom", redraw))
     .append("g")
 	.attr("transform", "translate(" + tree1.margin.left + "," + tree1.margin.top + ")");
-
 details.svg = d3.select("#details").append("svg")
 .attr("width", details.width + details.margin.right + details.margin.left)
 .attr("height", details.height + details.margin.top + details.margin.bottom)
 .append("g");
-
     //Redraw for zoom
     function redraw() {
         //console.log("here", d3.event.translate, d3.event.scale);
@@ -116,21 +98,16 @@ details.svg = d3.select("#details").append("svg")
                  "translate(" + d3.event.translate + ")"
                  + " scale(" + d3.event.scale + ")");
     }
-
 //necessary so that zoom knows where to zoom and unzoom from
 zm.translate([350, 20]);
-
-
 // load the external data
 d3.csv("data1.csv", function(error, data) {
-
 // *********** Convert flat data into a nice tree ***************
 // create a name: node map
 tree1.dataMap = data.reduce(function(map, node) {
-	map[node.Course_Short] = node;
+	map[node.Course] = node;
 	return map;
 }, {});
-
 // create the tree array
 tree1.treeData = [];
 data.forEach(function(node) {
@@ -147,13 +124,9 @@ data.forEach(function(node) {
 		tree1.treeData.push(node);
 	}
 });
-
   tree1.root = tree1.treeData[0];
   tree1.root.x0 = 120;
   tree1.root.y0 = 420;
-
-
-
   update(tree1.root);
   tree1.bouve = tree1.root.children[0];
   tree1.camd = tree1.root.children[1];
@@ -166,11 +139,9 @@ data.forEach(function(node) {
   tree1.hon = tree1.root.children[8];
   tree1.intl = tree1.root.children[9];
   tree1.ug = tree1.root.children[10];
-
   //add programs to data1
   //create those nodes here
   //click each program, then each college, then neu
-
   click(tree1.bouve);
   click(tree1.camd);
   click(tree1.ccis);
@@ -185,67 +156,50 @@ data.forEach(function(node) {
   //d3.select("#details").remove();
   //click(root);
   console.log(tree1.root);
-
 });
-
-
 function update(source) {
-
   // Compute the new tree layout.
   var nodes = tree1.tree.nodes(tree1.root).reverse(),
 	  links = tree1.tree.links(nodes);
-
   // Normalize for fixed-depth.
   nodes.forEach(function(d) { d.y = d.depth * 180; });
-
   // Declare the nodesâ€¦
   var node = tree1.svg.selectAll("g.node")
 	  .data(nodes, function(d) { return d.id || (d.id = ++tree1.i); });
-
   // Enter the nodes.
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
       .on("click", click);
-
   nodeEnter.append("circle")
 	  .attr("r", 0)
 	  .style("fill", "#a30303");
-
-
   nodeEnter.append("text")
   .attr("x", function(d) {
         return d.children || d._children ? 0 : 0; })
 .attr("y", function(d) {
         return d.children || d._children ? 0 : 0; })
-
 	  .attr("dy", ".35em")
 	  //.attr("text-anchor", function(d) {
 		//  return d.children || d._children ? "end" : "start"; })
     .attr("text-anchor", "middle")
-	  .text(function(d) { return d.Course_Short; })
+	  .text(function(d) { return d.Course; })
 	  .style("fill-opacity", 1);
-
 var nodeUpdate = node.transition()
 .duration(tree1.duration)
 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
-
 nodeUpdate.select("circle")
 .attr("r", 20)
 .attr("stroke", function(d) { return d._children ? "#fff" : "#000"; })
 .style("fill", function(d) { return d._children ? "#a30303" : "#fff"; });
-
-
 // Transition exiting nodes to the parent's new position.
 var nodeExit = node.exit().transition()
    .duration(tree1.duration)
    .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
        .remove();
-
   // Declare the linksâ€¦
   var link = tree1.svg.selectAll("path.link")
 	  .data(links, function(d) { return d.target.id; });
-
   // Enter any new links at the parent's previous position.
   link.enter().insert("path", "g")
       .attr("class", "link")
@@ -253,12 +207,10 @@ var nodeExit = node.exit().transition()
         var o = {x: source.x0, y: source.y0};
         return tree1.diagonal({source: o, target: o});
       });
-
   // Transition links to their new position.
   link.transition()
       .duration(tree1.duration)
       .attr("d", tree1.diagonal);
-
   // Transition exiting nodes to the parent's new position.
   link.exit().transition()
       .duration(tree1.duration)
@@ -267,15 +219,12 @@ var nodeExit = node.exit().transition()
         return tree1.diagonal({source: o, target: o});
       })
       .remove();
-
   // Stash the old positions for transition.
   nodes.forEach(function(d) {
     d.x0 = d.x;
     d.y0 = d.y;
   });
-
 }
-
 // Toggle children on click.
 function click(d) {
     //console.log(d);
@@ -289,15 +238,12 @@ function click(d) {
   }
   update(d);
 }
-
 function deets(d) {
     //console.log(d.Course);
     d3.select("#details").selectAll("text").remove();
-
 //create stack where NEU is bottom
 //each click checks if node is stack.peak, if so pop otherwise push
 //display stack.peak
-
     details.svg.append("text")
   	  .attr("dy", "2em")
       .attr("dx", "0em")
@@ -305,7 +251,6 @@ function deets(d) {
  //  		  return d.children || d._children ? "end" : "start"; })
   	  .text(d.Course)
   	  .style("font-size", 24);
-
 //if fac isnt empty show
 details.svg.append("text")
   .attr("dy", "5em")
@@ -314,8 +259,6 @@ details.svg.append("text")
 //  		  return d.children || d._children ? "end" : "start"; })
   .text("Latest Faculty: " + d.Latest_Faculty)
   .style("font-size", 18);
-
-
 //if offered isnt empty show
 details.svg.append("text")
   .attr("dy", "7em")
@@ -324,8 +267,6 @@ details.svg.append("text")
 //  		  return d.children || d._children ? "end" : "start"; })
   .text("Last Offered: " + d.Last_Offered)
   .style("font-size", 18);
-
-
 //if stud isnt empty show
 details.svg.append("text")
   .attr("dy", "9em")
@@ -335,7 +276,6 @@ details.svg.append("text")
   .text("Average Student Count: " + d.Average_Student_Count)
   .style("font-size", 18);
 }
-
 </script>
 
 </html>
