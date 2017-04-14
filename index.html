@@ -84,7 +84,7 @@ tree1.diagonal = d3.svg.diagonal()
 tree1.svg = d3.select("#tree1").append("svg")
 	.attr("width", tree1.width + tree1.margin.right + tree1.margin.left)
 	.attr("height", tree1.height + tree1.margin.top + tree1.margin.bottom)
-    .call(zm = d3.behavior.zoom().scaleExtent([1,3]).on("zoom", redraw))
+    .call(zm = d3.behavior.zoom().scaleExtent([.1,3]).on("zoom", redraw))
     .append("g")
 	.attr("transform", "translate(" + tree1.margin.left + "," + tree1.margin.top + ")");
 details.svg = d3.select("#details").append("svg")
@@ -99,7 +99,7 @@ details.svg = d3.select("#details").append("svg")
                  + " scale(" + d3.event.scale + ")");
     }
 //necessary so that zoom knows where to zoom and unzoom from
-zm.translate([850, 300]);
+zm.translate([350, 0]);
 // load the external data
 d3.csv("data1.csv", function(error, data) {
 // *********** Convert flat data into a nice tree ***************
