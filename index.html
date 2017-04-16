@@ -203,7 +203,7 @@ var nodeUpdate = node.transition()
 nodeUpdate.select("circle")
 .attr("r", 30)
 .attr("stroke", function(d) { return d._children ? "#fff" : "#000"; })
-.style("fill", function(d) { return d._children ? "##d30404" : "#fff"; });
+.style("fill", function(d) { return d._children ? "#d30404" : "#fff"; });
 // Transition exiting nodes to the parent's new position.
 var nodeExit = node.exit().transition()
    .duration(tree1.duration)
