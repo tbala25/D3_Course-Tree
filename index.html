@@ -91,6 +91,20 @@ details.svg = d3.select("#details").append("svg")
 .attr("width", details.width + details.margin.right + details.margin.left)
 .attr("height", details.height + details.margin.top + details.margin.bottom)
 .append("g");
+
+details.svg.append("rect")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("fill", "white");
+
+details.svg.append("line")
+.attr("x1", 0)
+.attr("y1", 4)
+.attr("x2", 0)
+.attr("y2", details.height-160)
+.style("stroke-width", 5)
+.style("stroke", "#ffde8d");
+
     //Redraw for zoom
     function redraw() {
         //console.log("here", d3.event.translate, d3.event.scale);
