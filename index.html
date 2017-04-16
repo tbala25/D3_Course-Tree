@@ -258,7 +258,7 @@ function deets(d) {
 //display stack.peak
     details.svg.append("text")
   	  .attr("dy", "2em")
-      .attr("dx", "0em")
+      .attr("dx", "1.5em")
  //  	  .attr("text-anchor", function(d) {
  //  		  return d.children || d._children ? "end" : "start"; })
   	  .text(d.Course_Long)
@@ -266,7 +266,7 @@ function deets(d) {
 //if fac isnt empty show
 details.svg.append("text")
   .attr("dy", "5em")
-  .attr("dx", "0em")
+  .attr("dx", "2em")
 //  	  .attr("text-anchor", function(d) {
 //  		  return d.children || d._children ? "end" : "start"; })
   .text("Latest Faculty: " + d.Latest_Faculty)
@@ -274,7 +274,7 @@ details.svg.append("text")
 //if offered isnt empty show
 details.svg.append("text")
   .attr("dy", "7em")
-  .attr("dx", "0em")
+  .attr("dx", "2em")
 //  	  .attr("text-anchor", function(d) {
 //  		  return d.children || d._children ? "end" : "start"; })
   .text("Last Offered: " + d.Last_Offered)
@@ -282,7 +282,7 @@ details.svg.append("text")
 //if stud isnt empty show
 details.svg.append("text")
   .attr("dy", "9em")
-  .attr("dx", "0em")
+  .attr("dx", "2em")
 //  	  .attr("text-anchor", function(d) {
 //  		  return d.children || d._children ? "end" : "start"; })
   .text("Average Student Count: " + d.Average_Student_Count)
