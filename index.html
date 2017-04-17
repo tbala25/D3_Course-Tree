@@ -108,7 +108,8 @@ details.svg.append("line")
     //Redraw for zoom
     function redraw() {
         tree1.svg.attr("transform",
-                 "translate(" + d3.event.translate + ")");
+                 "translate(" + d3.event.translate + ")"
+                 + " scale(" + d3.event.scale + ")");
     }
 //necessary so that zoom knows where to zoom and unzoom from
 zm.translate([350, 0]);
