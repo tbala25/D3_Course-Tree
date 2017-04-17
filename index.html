@@ -89,7 +89,7 @@ tree1.tree = d3.layout.tree().nodeSize([60, 10]);
 tree1.diagonal = d3.svg.diagonal()
 .projection(function(d) { return [d.y, d.x]; });
 
-var zm = d3.behavior.zoom().scaleExtent([.5,2]).on("zoom", redraw)
+var zm = d3.behavior.zoom().scaleExtent([.5,2]).on("zoom", redraw);
 zm.translate([margin.left, margin.top]);
 tree1.svg = d3.select("#tree1").append("svg")
 	.attr("width", tree1.width + tree1.margin.right + tree1.margin.left)
