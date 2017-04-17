@@ -274,6 +274,15 @@ function deets(d) {
         .attr("dx", "2em")
         .text("Average Student Count: " + d.Average_Student_Count)
         .style("font-size", 18);
+        
+       
+       //student hours
+      details.svg.append("text")
+         .attr("dy", "15em")
+         .attr("dx", "2em")
+         .text("Average Student Hours: " + d.Student_Hours)
+         .style("fill", function(a) { if(d.Student_Hours == "null") {return "white"} else {return "black"}; })
+         .style("font-size", 18);
 
 //if offered isnt empty show
 details.svg.append("text")
@@ -309,14 +318,6 @@ details.svg.append("text")
         .attr("dx", "2em")
         .text("Student Roles: " + d.Roles)
 .style("fill", function(a) { if(d.Roles == "null") {return "white"} else {return "black"}; })
-.style("font-size", 18);
-
-        //student hours
-        details.svg.append("text")
-          .attr("dy", "15em")
-          .attr("dx", "2em")
-          .text("Average Student Hours: " + d.Student_Hours)
-.style("fill", function(a) { if(d.Student_Hours == "null") {return "white"} else {return "black"}; })
 .style("font-size", 18);
 
 }
