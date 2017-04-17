@@ -81,7 +81,7 @@ tree1.margin = {top: 20, right: 500, bottom: 20, left: 120};
     tree1.height = 800 - tree1.margin.top - tree1.margin.bottom;
 tree1.i = 0;
 tree1.duration = 500;
-tree1.tree = d3.layout.tree().nodeSize([60, 10]);
+tree1.tree = d3.layout.tree().nodeSize([72, 10]);
 tree1.diagonal = d3.svg.diagonal()
 .projection(function(d) { return [d.y, d.x]; });
 tree1.svg = d3.select("#tree1").append("svg")
@@ -192,7 +192,7 @@ var nodeUpdate = node.transition()
 .duration(tree1.duration)
 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 nodeUpdate.select("circle")
-.attr("r", 25)
+.attr("r", 30)
 .attr("stroke", function(d) { return d._children ? "#a30303" : "#FFDE8D"; })
 .style("fill", function(d) { return d._children ? "#a30303" : "#fff"; });
 // Transition exiting nodes to the parent's new position.
