@@ -278,7 +278,7 @@ function deets(d) {
        
        //student hours
       details.svg.append("text")
-         .attr("dy", "15em")
+         .attr("dy", "7em")
          .attr("dx", "2em")
          .text("Average Student Hours: " + d.Student_Hours)
          .style("fill", function(a) { if(d.Student_Hours == "null") {return "white"} else {return "black"}; })
@@ -286,7 +286,7 @@ function deets(d) {
 
 //if offered isnt empty show
 details.svg.append("text")
-  .attr("dy", "7em")
+  .attr("dy", "9em")
   .attr("dx", "2em")
   .text("Last Offered: " + d.Last_Offered)
   .style("fill", function(a) { if(d.Last_Offered == "null") {return "white"} else {return "black"}; })
@@ -295,7 +295,7 @@ details.svg.append("text")
 
   //if fac isnt empty show
   details.svg.append("text")
-    .attr("dy", "9em")
+    .attr("dy", "11em")
     .attr("dx", "2em")
     .text("Latest Faculty: " + d.Latest_Faculty)
     .style("fill", function(a) { if(d.Latest_Faculty == "null") {return "white"} else {return "black"}; })
@@ -303,7 +303,7 @@ details.svg.append("text")
 
     //community partners
     details.svg.append("text")
-      .attr("dy", "11em")
+      .attr("dy", "13em")
       .attr("dx", "2em")
       .text("Partners: " + d.Community_Partners)
       //.call(wrap,500)
@@ -314,7 +314,7 @@ details.svg.append("text")
 
       //roles
       details.svg.append("text")
-        .attr("dy", "13em")
+        .attr("dy", "15em")
         .attr("dx", "2em")
         .text("Student Roles: " + d.Roles)
 .style("fill", function(a) { if(d.Roles == "null") {return "white"} else {return "black"}; })
