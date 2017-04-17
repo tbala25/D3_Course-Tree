@@ -89,12 +89,14 @@ tree1.tree = d3.layout.tree().nodeSize([60, 10]);
 tree1.diagonal = d3.svg.diagonal()
 .projection(function(d) { return [d.y, d.x]; });
 
+var zm = d3.behavior.zoom().scaleExtent([.5,2]).on("zoom", redraw)
+zm.translate([margin.left, margin.top]);
 tree1.svg = d3.select("#tree1").append("svg")
 	.attr("width", tree1.width + tree1.margin.right + tree1.margin.left)
 	.attr("height", tree1.height + tree1.margin.top + tree1.margin.bottom)
-    .call(zm = d3.behavior.zoom().scaleExtent([.5,2]).on("zoom", redraw))
+    .call(zm)
     .append("g")
-	.attr("transform", "translate(" + tree1.margin.left + "," + tree1.margin.top + ")");
+	.attr("transform", "translate(" + tree1.margin.left + "," + tree1.margin.cente + ")");
 
 details.svg = d3.select("#details").append("svg")
 .attr("width", details.width + details.margin.right + details.margin.left)
@@ -121,7 +123,7 @@ details.svg.append("line")
     }
 
 //necessary so that zoom knows where to zoom and unzoom from
-zm.translate([350, 0]);
+//zm.translate([350, 0]);
 // load the external data
 
 d3.csv("data1.csv", function(error, data) {
