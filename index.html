@@ -192,6 +192,7 @@ function update(source) {
   nodeEnter.append("circle")
 	 // .attr("r", 0)
 	  .style("fill", "#C00002");
+	  .attr("stroke", "#C00002");
   nodeEnter.append("text")
         .attr("x", function(d) {
         return d.children || d._children ? 0 : 0; })
@@ -208,7 +209,7 @@ var nodeUpdate = node.transition()
 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 nodeUpdate.select("circle")
 .attr("r", 25)
-.style("stroke", function(d) { return d._children ? "#C00002" : "#fff"; });
+.attr("stroke", function(d) { return d._children ? "#C00002" : "#FFDE8D"; })
 .style("fill", function(d) { return d._children ? "#C00002" : "#fff"; });
 // Transition exiting nodes to the parent's new position.
 var nodeExit = node.exit().transition()
